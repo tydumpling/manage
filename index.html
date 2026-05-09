@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/logo.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>后台管理系统</title>
+  <style>
+    #app-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    #app-loading.fade-out {
+      opacity: 0;
+    }
+
+    .loading-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 30px;
+      animation: logoFloat 2s ease-in-out infinite alternate;
+    }
+
+    .loading-logo svg {
+      width: 100%;
+      height: 100%;
+      fill: white;
+    }
+
+    .loading-text {
+      color: white;
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    .loading-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .loading-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.7);
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .loading-dot:nth-child(1) { animation-delay: -0.3s; }
+    .loading-dot:nth-child(2) { animation-delay: -0.1s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.1s; }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes logoFloat {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes dotPulse {
+      0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    #app {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+
+    #app.loaded {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app-loading">
+    <div class="loading-logo">
+      <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+        <path d="M924 512c0 227.4-184.6 412-412 412S100 739.4 100 512 284.6 100 512 100s412 184.6 412 412zM512 148c-200.9 0-364 163.1-364 364 0 89.6 32.5 171.6 86.2 234.8l54.1-54.1c-42.2-50.3-67.5-115.2-67.5-186.1 0-159.1 128.9-288 288-288s288 128.9 288 288c0 70.9-25.3 135.8-67.5 186.1l54.1 54.1C843.5 683.6 876 601.6 876 512c0-200.9-163.1-364-364-364z"/>
+        <path d="M512 352c88.4 0 160 71.6 160 160s-71.6 160-160 160-160-71.6-160-160 71.6-160 160-160zm0 48c-61.9 0-112 50.1-112 112s50.1 112 112 112 112-50.1 112-112-50.1-112-112-112z"/>
+        <path d="M512 188v72c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-72c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8z"/>
+        <path d="M512 756v72c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-72c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8z"/>
+        <path d="M188 512h72c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8h-72c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z"/>
+        <path d="M756 512h72c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8h-72c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8z"/>
+        <path d="M512 512l120-69.3c3.8-2.2 5.1-7.1 2.9-10.9l-24-41.6c-2.2-3.8-7.1-5.1-10.9-2.9L480 456.7c-8.8-5.1-19.2-8.1-30.4-8.1-33.1 0-60 26.9-60 60s26.9 60 60 60c33.1 0 60-26.9 60-60 0-11.2-3-21.6-8.1-30.4l10.5-6.2z" fill="#409eff"/>
+      </svg>
+    </div>
+    <div class="loading-text">后台管理系统</div>
+    <div class="loading-spinner"></div>
+    <div class="loading-dots">
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+      <div class="loading-dot"></div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
