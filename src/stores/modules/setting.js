@@ -8,7 +8,6 @@ export const useSettingStore = defineStore('settingStore', {
   state: () => ({
     asyncRouteList: [],
     isCollapsed: false,
-    fontSize: 14,
     lang: 'zhCN',
     isDark: false,
     primaryColor: '#409eff',
@@ -34,10 +33,6 @@ export const useSettingStore = defineStore('settingStore', {
     },
     setRouteList(list) {
       this.asyncRouteList = list
-    },
-    setFontSize(size) {
-      this.fontSize = size
-      document.documentElement.style.fontSize = size + 'px'
     },
     setLocale(lang) {
       this.lang = lang

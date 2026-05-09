@@ -2,7 +2,7 @@
   <el-dropdown>
     <div class="el-dropdown-link">
       <img class="avatar-img" alt="avatar" :src="getImageUrl('avatar.jpg')" />
-      <span>游荡de蝌蚪</span>
+      <span></span>
     </div>
     <template #dropdown>
       <el-dropdown-menu>

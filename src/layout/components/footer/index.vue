@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-container">Vue Admin ©2025 Created By 游荡de蝌蚪</div>
+  <div class="footer-container"></div>
 </template>
 
 <style lang="scss" scoped>

@@ -14,7 +14,7 @@
       <div class="header-icon" @click="toggle">
         <SvgIcon name="fullscreen" />
       </div>
-      <CustomFontSize />
+      <CustomTheme />
       <CustomSetting />
     </div>
   </div>
@@ -24,7 +24,7 @@
 import { useFullscreen } from '@vueuse/core'
 import { useSettingStore } from '@/stores/modules/setting'
 import CoustomBreadcrumb from './components/breadcrumb/index.vue'
-import CustomFontSize from './components/font/index.vue'
+import CustomTheme from './components/theme/index.vue'
 import CustomSetting from './components/setting/index.vue'
 import config from '@/config'
 

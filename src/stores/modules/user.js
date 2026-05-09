@@ -25,7 +25,7 @@ export const useUserStore = defineStore('userStore', {
       // 设置用户信息
       this.setUserInfo({
         username: 'ltadpole',
-        name: '游荡de蝌蚪',
+        name: '',
         age: 18,
         sex: 1
       })
